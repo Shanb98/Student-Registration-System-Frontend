@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="styles-login.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"><link rel="stylesheet" href="./style.css">
+</head>
+<body>
+	<div class="header">
+        <span><img src="./Screenshot_2023-08-28_151600-removebg-preview.png" alt="iDocs Template" width="150px" height="120px"></span>
+        <span><h1 class = "h SRS">Student  Registration System</h1></span>
+    </div>
+
+    <div class="navbar">
+        <a href="#home">Student Dashboard</a>
+        <a href="#news">University Administor</a>
+        <a href="#news">FAQ</a>
+    </div>
+
+    <div class="box-form">
+        <div class="left">
+            <div class="overlay">
+            <h1>Student Portal</h1>
+            <p>Undergraduate Student Semester Registration for Academic Year 2023 are now open.</p>
+            </div>
+        </div>
+        <div class="right">
+            <h5>Login</h5>
+            <p>Don't have an account? <a href="./index-create.html">Creat Your Account</a> it takes less than a minute</p>
+            <div class="inputs">
+                <input type="text" id="userName" placeholder="User name">
+                <br>
+                <input type="password" id="password" placeholder="Password">
+            </div>
+            <br><br>  
+            <div class="remember-me--forget-password">
+                <label>
+                    <input type="checkbox" name="item" checked/>
+                    <span class="text-checkbox">Remember me</span>
+                </label>
+                <p>forget password?</p>
+            </div>
+            <br>
+            <button id="loginButton" class="login" onclick="retrieveStudentData()" ondblclick="retrieveStudentData1()">Login</button>
+        </div>
+    </div>
+    <footer>
+        <div class="bg-light py-4">
+            <div class="container text-center">
+            <p class="text-muted mb-0 py-2">© 2023  All rights reserved.</p>
+            <p>Created by Shan Basnayake</p>
+            </div>
+        </div>
+    </footer>  
+
+    <script src="script-login.js"></script>
+</body>
+</html>

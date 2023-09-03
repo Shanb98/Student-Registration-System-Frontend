@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="styles-form.css">
+    
+</head>
+<div class="navbar">
+  <a href="./index-studentInterface.html"><h1>⏪ Back</h1></a>
+  <a href="#" id="username">👤 <span id="user-username">username</span></a>
+</div>
+
+<body>
+
+<div class="box">
+  <section id="container" class="container">
+    <header>Registration Form</header>
+    <br>
+    <label for=""><h3>Personal Details</h3></label>
+    <br>
+    <label>Student Image</label>
+
+    <form action="#" class="form">
+      <div class="img" id="image">
+        <div class="custom__image-container">
+          <!-- The image label with a "+" sign -->
+          <label id="add-img-label" for="add-single-img">+</label>
+          <!-- The input to select an image -->
+          <input type="file" id="add-single-img" accept="image/jpeg" />
+        </div>
+        <br />
+        <!-- The image preview container -->
+        <div class="image-preview" id="image-preview"></div>
+        <br />
+        <!-- Delete button for the selected image -->
+        <button class="delete-button" id="delete-button" style="display: none;">Delete Image</button>
+      </div>
+      <div class="personal-data">
+          <div class="input-box">
+              <label>Full Name</label>
+              <input type="text" id="form-fullname" placeholder="Enter Full Name" required />
+            </div>
+            <div class="input-box">
+              <label>Email Address</label>
+              <input type="text" id="form-email" placeholder="Enter Email Address" required />
+            </div>
+            <div class="column">
+              <div class="input-box">
+                <label>Phone Number</label>
+                <input type="number" id="form-phone" placeholder="Enter Phone Number" required />
+              </div>
+              <div class="input-box">
+                <label>Birth Date</label>
+                <input type="date" id="form-birthday" placeholder="Enter Birth Date" required />
+              </div>
+            </div>
+            <div class="input-box">
+                <label>National Identity Card Number</label>
+                <input type="text" id="form-nic" placeholder="Enter NIC Number" required />
+              </div>
+            <div class="gender-box">
+              <label for="">Gender</label>
+              <div class="gender-option">
+                <div class="gender">
+                  <input type="radio" id="check-male" name="gender" value="Male" checked />
+                  <label for="check-male">Male</label>
+                </div>
+                <div class="gender">
+                  <input type="radio" id="check-female" name="gender" value="Female" />
+                  <label for="check-female">Female</label>
+                </div>
+                <div class="gender">
+                  <input type="radio" id="check-other" name="gender" value="Prefer not to say" />
+                  <label for="check-other">Prefer not to say</label>
+                </div>
+              </div>
+            </div>
+            <div class="input-box address">
+              <label>Address</label>
+              <input type="text" id="form-address" placeholder="Enter street address" required />
+    
+              <div class="column">
+                <input type="text" id="form-city" placeholder="Enter your city" required />
+                <input type="number"id="form-zipcode" placeholder="Enter postal code" required />
+    
+              </div>
+    
+            </div>
+      </div>
+      <div class="course-details">
+          <br>
+          <br>
+          <br>
+          <label for=""><h3>Course Details</h3></label>
+          <div class="input-box address">
+              <label>Registration Number</label>
+              <input type="text" id="form-registrationnumber" placeholder="Enter Your Registration Number" required />
+              
+            </div>
+            <div class="column">
+              <div class="input-box">
+                <label>Faculty</label>
+                <div class="select-box">
+                  
+                  <select class="form-select" id="form-faculty" aria-label="Default select example">
+                      <option selected>Select Faculty</option>
+                      <option value="Engineering">Engineering</option>
+                      <option value="Computing">Computing</option>
+                      <option value="Bussiness">Bussiness</option>
+                      <option value="Hospitality & Culinary">Hospitality & Culinary</option>
+                      <option value="Humanities & Sciences">Humanities & Sciences</option>
+                  </select>
+                </div>                
+              </div>
+              <div class="input-box">
+                <label>specialization</label>
+                <div class="select-box">
+                  
+                  <select class="form-select" id="form-specialization" aria-label="Default select example">
+                      <option selected>Select Specialization</option>
+                      <option value="Bachelors/Undergraduate">Bachelors/Undergraduate</option>
+                      <option value="Masters">Masters</option>
+                      <option value="Doctoral">Doctoral</option>
+                      <option value="Higher Diploma">Higher Diploma</option>
+                      <option value="Pg. Diploma">Pg. Diploma</option>
+                      <option value="MPhil">MPhil</option>\
+                  </select>
+                </div>                   
+              </div>
+            </div>  
+            <div class="column">
+              <div class="input-box">
+                <label>Current Year</label>
+                <input type="number" id="form-year" placeholder="Enter the current Studying Year" required />
+              </div>
+              <div class="input-box">
+                <label>Current Semester</label>
+                <input type="number" id="form-semester" placeholder="Enter the current Studying Semester" required />
+              </div>
+            </div>
+      </div>
+      <br>
+      <br>
+      <label class="checkbox-container">
+        <input type="checkbox" name="item" checked/>
+        <span class="checkmark"></span>
+        <span class="text-checkbox"> I confirm that the above information is correct.</span>
+      </label>
+      <button id="Submit" class="submit" onclick="retrieveStudentData1()" ondblclick="retrieveStudentData1()">Submit</button>
+    </form>
+  </section>
+
+  <div class="modal">
+    <div id="successModal" class="cookiesContent" id="cookiesPopup">
+      <img src="https://cdn0.iconfinder.com/data/icons/flat-security-icons/128/tick.png" alt="cookies-img" />
+      <h1>Your Registration Submition Complete</h1>
+      <br>
+      <h2>We will inform you When the Registration Accepted</h2>
+      <br>
+      <button class="accept"><a href="./index-studentInterface.html" style="text-decoration: none;">Go to Dashboard</a> </button>
+    </div>
+  </div>
+</div>
+    
+
+    <script src="script-form.js"></script>
+  </body>
+</html>
