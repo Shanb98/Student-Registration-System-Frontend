@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="styles-create.css">
+    
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"><link rel="stylesheet" href="./style.css">
+
+
+</head>
+<body>
+	<div class="header">
+        <span><img src="../Student/Screenshot_2023-08-28_151600-removebg-preview.png" alt="iDocs Template" width="150px" height="120px"></span>
+        <span><h1 class = "h SRS">Student  Registration System</h1></span>
+    </div>
+
+    <div class="navbar">
+        <a href="index-login.html">Student Dashboard</a>
+        <a href="#news">University Administor</a>
+        <a href="#news">FAQ</a>
+    </div>
+
+    <div id="box" class="box-form">
+        <div class="create">
+        <div class="container">
+            <div class="title">Create Your Account</div>
+            <br></br>
+            <div class="content">
+                <form action="#">
+                    <div class="user-details">
+                        <div class="input-box">
+                            <span class="details">Full Name</span>
+                            <input type="text" id="name" placeholder="Enter your name" required>
+                        </div>
+
+                        <div class="input-box">
+                            <span class="details">Username</span>
+                            <input type="text" id="username" placeholder="Enter your username" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Designation</span>
+                            <select class="form-select" id="Designation" aria-label="Default select example">
+                                <option selected>Select Your Designation</option>
+                                <option value="Professor">Professor</option>
+                                <option value="Associate Professor">Associate Professor</option>
+                                <option value="Lecturer">Lecturer</option>
+                                <option value="Visiting Lecturer">Visiting Lecturer</option>
+                                <option value="Assistant Lecturer">Assistant Lecturer</option>
+                                <option value="Instructor">Instructor</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Employee ID</span>
+                            <input type="text" id="EmployeeID" placeholder="Enter your Employee ID" required>
+                        </div>
+
+                        <div class="input-box">
+                            <span class="details">Email</span>
+                            <input type="text" id="email" placeholder="Enter your email" required>
+                        </div>
+
+                        <div class="input-box">
+                            <span class="details">Faculty</span>
+                            <select class="form-select" id="faculty" aria-label="Default select example">
+                                <option selected>Select Faculty</option>
+                                <option value="Engineering">Engineering</option>
+                                <option value="Computing">Computing</option>
+                                <option value="Bussiness">Bussiness</option>
+                                <option value="Hospitality & Culinary">Hospitality & Culinary</option>
+                                <option value="Humanities & Sciences">Humanities & Sciences</option>
+                            </select>
+                        </div>
+
+                        <div class="input-box">
+                            <span class="details">Password</span>
+                            <input type="text" id="password" placeholder="Enter your password" required>
+                        </div>
+
+                        <div class="input-box">
+                            <span class="details">Confirm Password</span>
+                            <input type="text" id="rePassword" placeholder="Confirm your password" required>
+                        </div>
+                        
+                    </div>
+
+                    <div class="button">
+                        <div class="register">
+                            <button id="registerButton" class="register" onclick="submitForm()">Register</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        </div>
+    </div>
+    <footer>
+        <div class="bg-light py-4">
+            <div class=" text-center">
+            <p class="text-muted mb-0 py-2">© 2023  All rights reserved.</p>
+            <p>Created by Shan Basnayake</p>
+            </div>
+        </div>
+    </footer>
+    <div class="modal">
+        <div id="successModal" class="cookiesContent" id="cookiesPopup">
+          <img src="https://img.icons8.com/?size=1x&id=118624&format=png" alt="cookies-img" />
+          <h1>Greetings! Your account creation complete</h1>
+          <p></p>
+          <button class="accept"><a href="index-login.html" style="text-decoration: none;">Login Now</a> </button>
+        </div>
+      </div>
+    <script src="script-create.js"></script>
+</body>
+</html>
