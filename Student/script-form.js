@@ -73,6 +73,7 @@ if (storedUsername) {
 
 // Rest of your code
 function StudentPortal1(formFullName,formEmail,formPhone,formBirthday,formNic,formGender,formAddress,formCity,formZipcode,formRegistrationNumber,formFaculty,formSpecialization,formYear,formSemester){
+    
     this.formFullName=formFullName;
     this.formEmail=formEmail;
     this.formPhone=formPhone;
@@ -89,6 +90,7 @@ function StudentPortal1(formFullName,formEmail,formPhone,formBirthday,formNic,fo
     this.formSemester=formSemester;
 }
 function retrieveStudentData1() {
+    event.preventDefault(); 
     // Retrieve the username and password from local storage
     var userName = localStorage.getItem("userName");
     var password = localStorage.getItem("password");

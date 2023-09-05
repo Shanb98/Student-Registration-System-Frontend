@@ -246,7 +246,7 @@ footer{
   padding: 30px 30px 70px;
 
 
-  p {
+  & p {
     margin-bottom: 40px;
     font-size: 18px;
   }

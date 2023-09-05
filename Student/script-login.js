@@ -20,7 +20,7 @@ function retrieveStudentData(){
                     var alertText = `Hi ${matchingStudent.name}\n`;
                     alert(alertText);
                     setTimeout(function() {
-                        window.location.href = "http://127.0.0.1:5500/index-studentInterface.html";
+                        window.location.href = "index-studentInterface.html";
                     }, 2000);
                     localStorage.setItem("id", matchingStudent.id);
                     localStorage.setItem("email", matchingStudent.email);   

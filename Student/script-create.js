@@ -6,6 +6,8 @@ function StudentPortal(name, userName, email, faculty, password) {
     this.password = password;
 }
 function submitFrom() {
+    event.preventDefault(); 
+
     var name = document.getElementById("name").value;
     var userName = document.getElementById("username").value;
     var email = document.getElementById("email").value;
