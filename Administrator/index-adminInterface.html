@@ -3,9 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="styles-adminInterface.css">
 </head>
 <body>
-    <h1>sfdfggh</h1>
+  <div class="header">
+    <span><img src="../Student/Screenshot_2023-08-28_151600-removebg-preview.png" alt="iDocs Template" width="170px" height="120px"></span>
+    <h1 class="center-text">Administrator Portal</h1>
+  </div>
+  <!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-mdb-toggle="collapse"
+      data-mdb-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Dashboard</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#">Projects</a>
+        </li>
+      </ul>
+      <div class="input-box">
+        <select class="form-select" id="faculty" aria-label="Default select example" style="font-size: 20px; padding: 10px; width: 300px; height: 50px;">
+            <option selected disabled id="usernameOption" style="font-size: 20px;">👤 UserName</option>
+            <option value="email" disabled style="font-size: 20px;">email</option>
+            <option value="Computing" style="font-size: 20px;"><button><a href="index-login.html">Logout</a></button></option>
+        </select>
+    </div>
+    
+    
+    </div>
+
+      
+    </div>
+    <!-- Right elements -->
+  </div>
+  <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->
+<div class="card-container">
+    <div class="card" style="">
+        <img src="https://media.istockphoto.com/id/546183298/photo/financial-advisor-with-client.jpg?s=612x612&w=0&k=20&c=MBmuTIjPQd4StOUYmrBrXEpS0SQO-GdCs8jl5LmBOdw=" class="card-img-top" alt="...">
+        <div class="card-body">
+          <br>
+          <h5 class="card-title">Semester Registration</h5>
+          <p class="card-text">Review and Validate Student's new Semester Registration for Academic Year 2023.</p>
+          <a href="index-form.html" class="btn btn-primary">See Now</a>
+        </div>
+      </div>
+
+      <div class="card" style="">
+        <img src="https://media.istockphoto.com/id/992892464/photo/network-administrator-in-server-room.jpg?s=612x612&w=0&k=20&c=VsG6s60_GtERmYCUc1EzR7jHakzhMkPFCQHKPz4q8bo=" class="card-img-top" alt="...">
+        <div class="card-body">
+          <br>
+          <h5 class="card-title">Library Registration</h5>
+          <p class="card-text">Register as a online library member to get accsess to 1000+ books, researches and many other facilities</p>
+          <a href="index-form.html" class="btn btn-primary">Join Now</a>
+        </div>
+      </div>
+      <div class="card" style="">
+        <img src="https://th.bing.com/th/id/OIP.utcWk8dWvQHf01oLByaBDgAAAA?w=261&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7" class="card-img-top" alt="...">
+        <div class="card-body">
+          <br>
+          
+          <h5 class="card-title">Sports Clubs</h5>
+          <p class="card-text">If you are pick a sport register under that sport to acheive many supports from the university</p>
+          <a href="index-form.html" class="btn btn-primary">Register Now</a>
+        </div>
+      </div>
+</div>
+<footer>
+  <div class="bg-light py-4">
+      <div class=" text-center">
+      <p class="text-muted mb-0 py-2">© 2023  All rights reserved.</p>
+      <p>Created by Shan Basnayake</p>
+      </div>
+  </div>
+</footer>
+<script src="script-studentInterface.js"></script>
 </body>
 </html>
