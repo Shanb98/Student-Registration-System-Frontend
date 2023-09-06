@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         json.forEach((element) => {
             localStorage.setItem("RegisterId", element.id);
-            studentDiv += `
+            studentDiv = `
 
             <div class="img" id="image">
               <div class="custom__image-container">
@@ -222,10 +222,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div class="input-box">
                   <label>Current Year</label>
                   <input
-                    type="number"
+                    type="text"
                     id="form-year"
                     value="${element.formYear}"
                     required
+                    readonly
                   />
                 </div>
                 <div class="input-box">
@@ -235,6 +236,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     id="form-semester"
                     value="${element.formSemester}"
                     required
+                    readonly
                   />
                 </div>
               </div>

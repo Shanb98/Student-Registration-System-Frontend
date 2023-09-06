@@ -72,12 +72,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 <br>
                 <div class="buttons">
                 <div class="update-btn">
-                    <button id="acceptButton">Accept Form</button>
+                    <button id="acceptButton" onclick="handleAcceptFormClick(this)">Accept Form</button>
                 </div>
-            
                 <div class="delete-btn">
-                    <button id="rejectButton">Reject Form</button>
+                    <button id="rejectButton" onclick="handleRejectFormClick(this)">Reject Form</button>
                 </div>
+            </div>
+            
             </div>
             
             </div>
@@ -87,39 +88,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
     studentCard.innerHTML = studentDiv;
 
-    // Add click event listeners to all "Accept Form" buttons
-           // Event delegation to handle button clicks
-           studentCard.addEventListener("click", (event) => {
-            const target = event.target;
-            if (target.classList.contains("acceptButton")) {
-                handleAcceptFormClick(target);
-            } else if (target.classList.contains("rejectButton")) {
-                handleRejectFormClick(target);
-            }
+
         });
-
-        function handleAcceptFormClick(button) {
-            // Hide the clicked "Accept Form" button
-            button.style.display = "none";
-
-            // Find the corresponding "Reject Form" button and hide it too
-            const container = button.closest(".container");
-            const rejectButton = container.querySelector(".rejectButton");
-            rejectButton.style.display = "none";
-
-            // Display a success message
-            const messageElement = document.createElement("p");
-            messageElement.textContent = "Registration Accepted ";
-            messageElement.style.color = "green";
-            messageElement.style.fontWeight = "bold";
-            messageElement.style.fontSize = "30px";
-            container.appendChild(messageElement);
-        }
-
-        function handleRejectFormClick(button) {
-            // Handle the "Reject Form" click event as needed
-        }
-    });
 });
 
+function handleAcceptFormClick(button) {
+    // Hide the clicked "Accept Form" button
+    button.style.display = "none";
 
+    // Find the corresponding "Reject Form" button and hide it too
+    const container = button.closest(".container");
+    const rejectButton = container.querySelector("#rejectButton");
+    rejectButton.style.display = "none";
+
+    // Display a success message
+    const messageElement = document.createElement("p");
+    messageElement.textContent = "Registration Accepted ";
+    messageElement.style.color = "green";
+    messageElement.style.fontWeight = "bold";
+    messageElement.style.fontSize = "18px";
+    container.appendChild(messageElement);
+}
+
+function handleRejectFormClick(button) {
+    // Handle the "Reject Form" click event as needed
+}
