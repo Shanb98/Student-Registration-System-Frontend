@@ -4,19 +4,19 @@ const searchBtn = document.querySelector('.search-btn');
 
 searchBtn.addEventListener("click", () =>{
 const studentName = document.querySelector('.search-text').value;
-var url=`http://localhost:8080/StudentPortal/${studentName}`;
+var url=`http://localhost:8080/StudentPortal/form/${studentName}`;
 
 
 fetch(url)
     .then((response) => response.json())
     .then((json) => {
         let studentCard = document.getElementById("main-div");
-        document.getElementById("search").style.display = "grid";
+        document.getElementById("search").style.display = "none";
 
         let studentDiv = ``;
 
         if (json.length === 0) {
-            document.getElementById("data-not-found").style.display = "none";
+            document.getElementById("data-not-found").style.display = "block";
         } else {
             document.getElementById("data-not-found").style.display = "none";
 
