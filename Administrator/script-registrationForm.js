@@ -6,7 +6,9 @@ function getQueryParam(name) {
 // Get the userName from the URL
 var userName = getQueryParam("userName");
 console.log(userName);
-
+if (userName) {
+  
+}
 
 var url=`http://localhost:8080/StudentPortal/${userName}`;
 document.addEventListener("DOMContentLoaded", () => {
