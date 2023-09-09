@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         json.forEach((element) => {
 
-            if(element.userName !== null){
+            if(element.formFullName !== null){
                 studentDiv += `
                 <div class="container">
                     <div class="pro-image">
@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <button id="acceptButton" onclick="handleAcceptFormClick(this)">Accept Form</button>
                     </div>
                     <div class="delete-btn">
-                        <button id="rejectButton" onclick="handleRejectFormClick(this)">Reject Form</button>
+                        <button id="rejectButton" onclick="handleRejectFormClick(this,${element.id})">Reject Form</button>
                     </div>
                 </div>
                 
@@ -116,6 +116,16 @@ function handleAcceptFormClick(button) {
     container.appendChild(messageElement);
 }
 
-function handleRejectFormClick(button) {
-    // Handle the "Reject Form" click event as needed
-}
+function handleRejectFormClick(button, id) {
+
+    var requestOptions = {
+      method: 'DELETE',
+      body: id,
+      redirect: 'follow'
+    };
+    var url = `http://localhost:8080/StudentPortal/delete/${id}`
+    fetch(url, requestOptions)
+      .then(response => response.text())
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
+    }
