@@ -7,7 +7,6 @@ const deleteButton = document.getElementById("delete-button");
 
 let selectedImage = null;
 
-
 const addImgHandler = () => {
     const file = imgInputHelper.files[0];
     if (!file) return;
@@ -29,6 +28,9 @@ const addImgHandler = () => {
         imgLabel.innerHTML = '';
         imgLabel.appendChild(newImg);
         deleteButton.style.display = "block";
+
+        // Convert the selected image to a byte array
+        convertImageToByteArray(file);
     };
 
     // Reset image input
@@ -51,10 +53,63 @@ const deleteImgHandler = () => {
     imgLabel.innerHTML = '+';
 };
 
+// Function to convert the selected image to a byte array
+const convertImageToByteArray = (imageFile) => {
+    const reader = new FileReader();
+    reader.onload = (event) => {
+        // Convert the base64 string to a byte array
+        const base64String = event.target.result.split(',')[1];
+        const byteCharacters = atob(base64String);
+        const byteArray = new Uint8Array(byteCharacters.length);
+
+        for (let i = 0; i < byteCharacters.length; i++) {
+            byteArray[i] = byteCharacters.charCodeAt(i);
+        }
+
+        // Now 'byteArray' contains the image data as a byte array
+        console.log(byteArray);
+        sendByteArrayToBackend(byteArray)
+    };
+
+    // Read the image file as a data URL
+    reader.readAsDataURL(imageFile);
+};
+// Function to send the byte array to the backend
+const sendByteArrayToBackend = (byteArray) => {
+    var id = localStorage.getItem("id")
+    console.log(byteArray);
+    localStorage.setItem("imageByteArray", JSON.stringify(Array.from(byteArray)));
+
+    // Construct your PUT request here
+    const url = `http://localhost:8080/StudentPortal/image/${id}`; // Replace with your actual backend endpoint
+    const myHeaders = new Headers({
+        'Content-Type': 'application/json',
+    });
+
+    const requestOptions = {
+        method: 'PUT',
+        headers: myHeaders,
+        body: JSON.stringify({ imageByteArray: Array.from(byteArray) }), // Assuming your backend expects a JSON object with an 'imageByteArray' property
+        redirect: 'follow',
+    };
+
+    fetch(url, requestOptions)
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.text();
+    })
+    .then((result) => {
+        console.log(result);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+};
 // Attach event listeners
 imgInputHelper.addEventListener("change", addImgHandler);
 deleteButton.addEventListener("click", deleteImgHandler);
-
 
 // Retrieve the username from local storage
 var userName = localStorage.getItem("userName");
