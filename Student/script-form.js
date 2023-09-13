@@ -380,6 +380,33 @@ function validateDob() {
   }
 }
 
+//Validating the nic
+function validateNic() {
+  let formNic = formNicE.value.trim();
+
+  let isValidNic = (formNic) => {
+    let formNicV = formNic.toString();
+    if (formNicV.length == 12) {
+      return true;
+    }
+    if (formNicV.length != 10 && formNicV.substring(8, 10).toUpperCase != "V") {
+      return false;
+    }
+    return true;
+  };
+
+  if (formNic == "") {
+    setError(formNicE, "NIC is required");
+    return false;
+  } else if (!isValidNic(formNic)) {
+    setError(formNicE, "Invalid NIC number");
+    return false;
+  } else {
+    setSuccess(formNicE);
+    return true;
+  }
+}
+
 //validating all the inputs
 const isValidAllInputs = () => {
   const isValidName = validateName();
@@ -387,17 +414,16 @@ const isValidAllInputs = () => {
   const isValidTpNumber = validateTpNumber();
   const isValidDob = validateDob();
   // const isValidAddress = validateAddress();
-  // const isValidNic = validateNic();
+  const isValidNic = validateNic();
   // const isValidSex = validateSex();
   // const isValidSchool = validateSchool(schooE);
   // const isValidDepartment = validateDepartment(departmentE);
   // const isValidCourse = validateCourse(courseE);
 
   return (
-    isValidName && isValidEmail && isValidTpNumber && isValidDob
+    isValidName && isValidEmail && isValidTpNumber && isValidDob && isValidNic
     //   isValidAddress &&
 
-    //   isValidNic &&
     //   isValidSex &&
     //   isValidSchool &&
     //   isValidDepartment &&
