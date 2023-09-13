@@ -91,6 +91,18 @@ body {
   border-radius: 6px;
   padding: 0 15px;
 }
+.form :where(.input-selection input, .select-box) {
+  position: relative;
+  height: 50px;
+  width: 100%;
+  outline: none;
+  font-size: 1.2rem;
+  color: #707070;
+  margin-top: 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0 15px;
+}
 .input-box input:focus {
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 }
@@ -352,6 +364,16 @@ body {
 
 .input-box.error select {
     border-color: #ff3860;
+}
+
+/* for the faculty and specialization section */
+
+.input-box.select-box.success {
+  border-color: #09c372;
+}
+
+.input-box.select-box.error  {
+  border-color: #ff3860;
 }
 
 /* added the input-box class to gender div and made the radio button small */

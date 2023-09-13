@@ -426,6 +426,45 @@ function validateAddress() {
   }
 }
 
+//Validating the registration number
+function validateRegNumber() {
+  let formRegistrationNumber = formRegistrationNumberE.value.trim();
+
+  if (formRegistrationNumber === "") {
+    setError(formRegistrationNumberE, "Registration number is required");
+    return false;
+  } else {
+    setSuccess(formRegistrationNumberE);
+    return true;
+  }
+}
+
+//Validating the faculty
+function validateFaculty(formFacultyE) {
+  let formFaculty = formFacultyE.value.trim();
+
+  if (formFaculty === "Select Faculty") {
+    setError(formFacultyE, "Select an option");
+    return false;
+  } else {
+    setSuccess(formFacultyE);
+    return true;
+  }
+}
+
+//Validating the specialization
+function validateSpecialization(formSpecializationE) {
+    let formSpecialization = formSpecializationE.value.trim();
+  
+    if (formSpecialization === "Select Specialization") {
+      setError(formSpecializationE, "Select an option");
+      return false;
+    } else {
+      setSuccess(formSpecializationE);
+      return true;
+    }
+  }
+
 //validating all the inputs
 const isValidAllInputs = () => {
   const isValidName = validateName();
@@ -434,7 +473,9 @@ const isValidAllInputs = () => {
   const isValidDob = validateDob();
   const isValidAddress = validateAddress();
   const isValidNic = validateNic();
-  // const isValidSchool = validateSchool(schooE);
+  const isValidRegNumber = validateRegNumber();
+  const isValidFaculty = validateFaculty(formFacultyE);
+  const isValidSpecialization = validateSpecialization(formSpecializationE);
   // const isValidDepartment = validateDepartment(departmentE);
   // const isValidCourse = validateCourse(courseE);
 
@@ -444,9 +485,10 @@ const isValidAllInputs = () => {
     isValidTpNumber &&
     isValidDob &&
     isValidNic &&
-    isValidAddress
-
-    //   isValidSchool &&
+    isValidAddress &&
+    isValidRegNumber &&
+    isValidFaculty &&
+    isValidSpecialization
     //   isValidDepartment &&
     //   isValidCourse
   );
