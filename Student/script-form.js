@@ -454,16 +454,42 @@ function validateFaculty(formFacultyE) {
 
 //Validating the specialization
 function validateSpecialization(formSpecializationE) {
-    let formSpecialization = formSpecializationE.value.trim();
-  
-    if (formSpecialization === "Select Specialization") {
-      setError(formSpecializationE, "Select an option");
-      return false;
-    } else {
-      setSuccess(formSpecializationE);
-      return true;
-    }
+  let formSpecialization = formSpecializationE.value.trim();
+
+  if (formSpecialization === "Select Specialization") {
+    setError(formSpecializationE, "Select an option");
+    return false;
+  } else {
+    setSuccess(formSpecializationE);
+    return true;
   }
+}
+
+//Validating the currentyear
+function validateCurrentYear() {
+  let formYear = formYearE.value.trim();
+
+  if (formYear === "") {
+    setError(formYearE, "Select your current semester");
+    return false;
+  } else {
+    setSuccess(formYearE);
+    return true;
+  }
+}
+
+//Validating the currentsemester
+function validateCurrentSemester() {
+  let formSemester = formSemesterE.value.trim();
+
+  if (formSemester === "") {
+    setError(formSemesterE, "Enter your current semester");
+    return false;
+  } else {
+    setSuccess(formSemesterE);
+    return true;
+  }
+}
 
 //validating all the inputs
 const isValidAllInputs = () => {
@@ -476,8 +502,8 @@ const isValidAllInputs = () => {
   const isValidRegNumber = validateRegNumber();
   const isValidFaculty = validateFaculty(formFacultyE);
   const isValidSpecialization = validateSpecialization(formSpecializationE);
-  // const isValidDepartment = validateDepartment(departmentE);
-  // const isValidCourse = validateCourse(courseE);
+  const isValidCurrentYear = validateCurrentYear();
+  const isValidCurrentSemester = validateCurrentSemester();
 
   return (
     isValidName &&
@@ -488,9 +514,9 @@ const isValidAllInputs = () => {
     isValidAddress &&
     isValidRegNumber &&
     isValidFaculty &&
-    isValidSpecialization
-    //   isValidDepartment &&
-    //   isValidCourse
+    isValidSpecialization &&
+    isValidCurrentYear &&
+    isValidCurrentSemester
   );
 };
 
