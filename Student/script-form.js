@@ -275,86 +275,118 @@ function validateEmail() {
 
 //Validating the tpNumber
 function validateTpNumber() {
-    let formPhone = formPhoneE.value.trim();
-  
-    let isValidTpNumber = (formPhone) => {
-      if (formPhone.charAt(0) != 0) {
-        return false;
-      }
-  
-      let tpS = formPhone.toString();
-      let tp = tpS.substring(1, 10);
-  
-      if (tp.length != 9) {
-        return false;
-      }
-  
-      let serviceCode = [
-        "70",
-        "71",
-        "72",
-        "74",
-        "75",
-        "76",
-        "77",
-        "78",
-        "11",
-        "36",
-        "31",
-        "33",
-        "38",
-        "34",
-        "81",
-        "54",
-        "51",
-        "52",
-        "66",
-        "91",
-        "41",
-        "47",
-        "21",
-        "23",
-        "24",
-        "63",
-        "65",
-        "67",
-        "26",
-        "25",
-        "27",
-        "32",
-        "37",
-        "55",
-        "57",
-        "45",
-        "35",
-      ];
-      for (let i = 0; i < serviceCode.length; i++) {
-        if (tpS.substring(1, 3) == serviceCode[i]) {
-          return true;
-        }
-      }
+  let formPhone = formPhoneE.value.trim();
+
+  let isValidTpNumber = (formPhone) => {
+    if (formPhone.charAt(0) != 0) {
       return false;
-    };
-  
-    if (formPhone === "") {
-      setError(formPhoneE, "Telephone number is required");
+    }
+
+    let tpS = formPhone.toString();
+    let tp = tpS.substring(1, 10);
+
+    if (tp.length != 9) {
       return false;
-    } else if (!isValidTpNumber(formPhoneE)) {
-      setError(formPhoneE, "Invalid telephone number");
-      return false;
-    } else {
-      setSuccess(formPhoneE);
+    }
+
+    let serviceCode = [
+      "70",
+      "71",
+      "72",
+      "74",
+      "75",
+      "76",
+      "77",
+      "78",
+      "11",
+      "36",
+      "31",
+      "33",
+      "38",
+      "34",
+      "81",
+      "54",
+      "51",
+      "52",
+      "66",
+      "91",
+      "41",
+      "47",
+      "21",
+      "23",
+      "24",
+      "63",
+      "65",
+      "67",
+      "26",
+      "25",
+      "27",
+      "32",
+      "37",
+      "55",
+      "57",
+      "45",
+      "35",
+    ];
+    for (let i = 0; i < serviceCode.length; i++) {
+      if (tpS.substring(1, 3) == serviceCode[i]) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  if (formPhone === "") {
+    setError(formPhoneE, "Telephone number is required");
+    return false;
+  } else if (!isValidTpNumber(formPhoneE)) {
+    setError(formPhoneE, "Invalid telephone number");
+    return false;
+  } else {
+    setSuccess(formPhoneE);
+    return true;
+  }
+}
+
+//Validation for the birthday
+function validateDob() {
+  let formBirthday = formBirthdayE.value.trim();
+
+  const inValidDob = (formBirthday) => {
+    let mm = formBirthday.substring(5, 7);
+    let dd = formBirthday.substring(8, 10);
+    let yy = formBirthday.substring(0, 4);
+
+    const date = new Date();
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let day = date.getDay;
+
+    if (yy >= year) {
       return true;
     }
+    return false;
+  };
+
+  if (formBirthday === "") {
+    setError(formBirthdayE, "Birthday is required");
+    return false;
+  } else if (inValidDob(formBirthday)) {
+    setError(formBirthdayE, "Enter valid birthday");
+    return false;
+  } else {
+    setSuccess(formBirthdayE);
+    return true;
   }
+}
 
 //validating all the inputs
 const isValidAllInputs = () => {
-    const isValidName = validateName();
-    const isValidEmail = validateEmail();
-  // const isValidDob = validateDob();
-  // const isValidAddress = validateAddress();
+  const isValidName = validateName();
+  const isValidEmail = validateEmail();
   const isValidTpNumber = validateTpNumber();
+  const isValidDob = validateDob();
+  // const isValidAddress = validateAddress();
   // const isValidNic = validateNic();
   // const isValidSex = validateSex();
   // const isValidSchool = validateSchool(schooE);
@@ -362,9 +394,7 @@ const isValidAllInputs = () => {
   // const isValidCourse = validateCourse(courseE);
 
   return (
-    isValidName && isValidEmail &&
-    isValidTpNumber 
-    //   isValidDob &&
+    isValidName && isValidEmail && isValidTpNumber && isValidDob
     //   isValidAddress &&
 
     //   isValidNic &&
