@@ -8,103 +8,103 @@ const deleteButton = document.getElementById("delete-button");
 let selectedImage = null;
 
 const addImgHandler = () => {
-    const file = imgInputHelper.files[0];
-    if (!file) return;
+  const file = imgInputHelper.files[0];
+  if (!file) return;
 
-    // Generate img preview
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-        const newImg = document.createElement("img");
-        newImg.src = reader.result;
+  // Generate img preview
+  const reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = () => {
+    const newImg = document.createElement("img");
+    newImg.src = reader.result;
 
-        // Clear existing images
-        imgContainer.innerHTML = '';
+    // Clear existing images
+    imgContainer.innerHTML = "";
 
-        // Store the selected image
-        selectedImage = file;
+    // Store the selected image
+    selectedImage = file;
 
-        // Append the new image inside the label and show the delete button
-        imgLabel.innerHTML = '';
-        imgLabel.appendChild(newImg);
-        deleteButton.style.display = "block";
+    // Append the new image inside the label and show the delete button
+    imgLabel.innerHTML = "";
+    imgLabel.appendChild(newImg);
+    deleteButton.style.display = "block";
 
-        // Convert the selected image to a byte array
-        convertImageToByteArray(file);
-    };
+    // Convert the selected image to a byte array
+    convertImageToByteArray(file);
+  };
 
-    // Reset image input
-    imgInputHelper.value = "";
+  // Reset image input
+  imgInputHelper.value = "";
 };
 
 // Function to handle deleting the image
 const deleteImgHandler = () => {
-    // Clear the selected image
-    selectedImage = null;
+  // Clear the selected image
+  selectedImage = null;
 
-    // Clear the image container and hide the delete button
-    imgContainer.innerHTML = '';
-    deleteButton.style.display = "none";
+  // Clear the image container and hide the delete button
+  imgContainer.innerHTML = "";
+  deleteButton.style.display = "none";
 
-    // Reset the input field
-    imgInputHelper.value = "";
+  // Reset the input field
+  imgInputHelper.value = "";
 
-    // Restore the label with the "+" sign
-    imgLabel.innerHTML = '+';
+  // Restore the label with the "+" sign
+  imgLabel.innerHTML = "+";
 };
 
 // Function to convert the selected image to a byte array
 const convertImageToByteArray = (imageFile) => {
-    const reader = new FileReader();
-    reader.onload = (event) => {
-        // Convert the base64 string to a byte array
-        const base64String = event.target.result.split(',')[1];
-        const byteCharacters = atob(base64String);
-        const byteArray = new Uint8Array(byteCharacters.length);
+  const reader = new FileReader();
+  reader.onload = (event) => {
+    // Convert the base64 string to a byte array
+    const base64String = event.target.result.split(",")[1];
+    const byteCharacters = atob(base64String);
+    const byteArray = new Uint8Array(byteCharacters.length);
 
-        for (let i = 0; i < byteCharacters.length; i++) {
-            byteArray[i] = byteCharacters.charCodeAt(i);
-        }
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteArray[i] = byteCharacters.charCodeAt(i);
+    }
 
-        // Now 'byteArray' contains the image data as a byte array
-        console.log(byteArray);
-        sendByteArrayToBackend(byteArray)
-    };
+    // Now 'byteArray' contains the image data as a byte array
+    console.log(byteArray);
+    sendByteArrayToBackend(byteArray);
+  };
 
-    // Read the image file as a data URL
-    reader.readAsDataURL(imageFile);
+  // Read the image file as a data URL
+  reader.readAsDataURL(imageFile);
 };
 // Function to send the byte array to the backend
 const sendByteArrayToBackend = (byteArray) => {
-    var id = localStorage.getItem("id")
-    console.log(byteArray);
-    localStorage.setItem("imageByteArray", JSON.stringify(Array.from(byteArray)));
+  var id = localStorage.getItem("id");
+  console.log(byteArray);
+  localStorage.setItem("imageByteArray", JSON.stringify(Array.from(byteArray)));
 
-    // Construct your PUT request here
-    const url = `http://localhost:8080/StudentPortal/image/${id}`; // Replace with your actual backend endpoint
-    const myHeaders = new Headers({
-        'Content-Type': 'application/json',
-    });
+  // Construct your PUT request here
+  const url = `http://localhost:8080/StudentPortal/image/${id}`; // Replace with your actual backend endpoint
+  const myHeaders = new Headers({
+    "Content-Type": "application/json",
+  });
 
-    const requestOptions = {
-        method: 'PUT',
-        headers: myHeaders,
-        body: JSON.stringify({ imageByteArray: Array.from(byteArray) }), // Assuming your backend expects a JSON object with an 'imageByteArray' property
-        redirect: 'follow',
-    };
+  const requestOptions = {
+    method: "PUT",
+    headers: myHeaders,
+    body: JSON.stringify({ imageByteArray: Array.from(byteArray) }), // Assuming your backend expects a JSON object with an 'imageByteArray' property
+    redirect: "follow",
+  };
 
-    fetch(url, requestOptions)
+  fetch(url, requestOptions)
     .then((response) => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.text();
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.text();
     })
     .then((result) => {
-        console.log(result);
+      console.log(result);
     })
     .catch((error) => {
-        console.error('Error:', error);
+      console.error("Error:", error);
     });
 };
 // Attach event listeners
@@ -117,7 +117,6 @@ var userName = localStorage.getItem("userName");
 // Set the username in the "user-username" element
 document.getElementById("user-username").textContent = userName;
 
-
 // Check if a username is stored in local storage and update the UI
 // if (storedUsername) {
 //     usernameElement.textContent = storedUsername;
@@ -128,7 +127,7 @@ document.getElementById("user-username").textContent = userName;
 
 // // Rest of your code
 // function StudentPortal1(formFullName,formEmail,formPhone,formBirthday,formNic,formGender,formAddress,formCity,formZipcode,formRegistrationNumber,formFaculty,formSpecialization,formYear,formSemester){
-    
+
 //     this.formFullName=formFullName;
 //     this.formEmail=formEmail;
 //     this.formPhone=formPhone;
@@ -145,7 +144,7 @@ document.getElementById("user-username").textContent = userName;
 //     this.formSemester=formSemester;
 // }
 // function retrieveStudentData1() {
-//     event.preventDefault(); 
+//     event.preventDefault();
 //     // Retrieve the username and password from local storage
 //     var userName = localStorage.getItem("userName");
 //     var password = localStorage.getItem("password");
@@ -171,10 +170,9 @@ document.getElementById("user-username").textContent = userName;
 //     var formSemester = document.getElementById("form-semester").value;
 //     var url=`http://localhost:8080/StudentPortal/${id}`;
 
-
-//     var studentPortal1 = new StudentPortal1(formFullName,formEmail,formPhone,formBirthday,formNic,formGender,formAddress,formCity,formZipcode,formRegistrationNumber,formFaculty,formSpecialization,formYear,formSemester)    
+//     var studentPortal1 = new StudentPortal1(formFullName,formEmail,formPhone,formBirthday,formNic,formGender,formAddress,formCity,formZipcode,formRegistrationNumber,formFaculty,formSpecialization,formYear,formSemester)
 //     var studentPortal1Json = JSON.stringify(studentPortal1)
-    
+
 //     var myHeaders = new Headers();
 //     myHeaders.append("Content-Type", "application/json");
 
@@ -184,7 +182,7 @@ document.getElementById("user-username").textContent = userName;
 //         body: studentPortal1Json,
 //         redirect: 'follow'
 //       };
-      
+
 //     fetch(url, requestOptions)
 //         .then(response => response.text())
 //         .then(result => console.log(result))
@@ -198,7 +196,7 @@ document.getElementById("user-username").textContent = userName;
 //        // setTimeout(function() {
 //        //     window.location.href = "http://127.0.0.1:5500/index-login.html";
 //         //}, 2000);
-//     }    
+//     }
 // }
 
 //Validations for the form
@@ -214,160 +212,271 @@ var formGenderE = document.querySelector('input[name="gender"]:checked');
 var formAddressE = document.getElementById("form-address");
 var formCityE = document.getElementById("form-city");
 var formZipcodeE = document.getElementById("form-zipcode");
-var formRegistrationNumberE = document.getElementById("form-registrationnumber");
+var formRegistrationNumberE = document.getElementById(
+  "form-registrationnumber"
+);
 var formFacultyE = document.getElementById("form-faculty");
 var formSpecializationE = document.getElementById("form-specialization");
 var formYearE = document.getElementById("form-year");
 var formSemesterE = document.getElementById("form-semester");
 
 const setError = (element, message) => {
-    const inputField = element.parentElement;
-    const errorDisplay = inputField.querySelector(".error");
-  
-    errorDisplay.innerText = message;
-    inputField.classList.add("error");
-    inputField.classList.remove("success");
-  };
-  
-  const setSuccess = (element) => {
-    const inputField = element.parentElement;
-    const errorDisplay = inputField.querySelector(".error");
-  
-    errorDisplay.innerText = "";
-    inputField.classList.add("success");
-    inputField.classList.remove("error");
-  };
+  const inputField = element.parentElement;
+  const errorDisplay = inputField.querySelector(".error");
+
+  errorDisplay.innerText = message;
+  inputField.classList.add("error");
+  inputField.classList.remove("success");
+};
+
+const setSuccess = (element) => {
+  const inputField = element.parentElement;
+  const errorDisplay = inputField.querySelector(".error");
+
+  errorDisplay.innerText = "";
+  inputField.classList.add("success");
+  inputField.classList.remove("error");
+};
 
 //Validation for the name
 function validateName() {
-    let formFullName = formFullNameE.value.trim();
-  
-    if (formFullName === "") {
-      setError(formFullNameE, "Fullname is required");
-      return false;
-    } else {
-      setSuccess(formFullNameE);
-      return true;
-    }
-  }
+  let formFullName = formFullNameE.value.trim();
 
-  //Validating the email
+  if (formFullName === "") {
+    setError(formFullNameE, "Fullname is required");
+    return false;
+  } else {
+    setSuccess(formFullNameE);
+    return true;
+  }
+}
+
+//Validating the email
 function validateEmail() {
-    let formEmail = formEmailE.value.trim();
+  let formEmail = formEmailE.value.trim();
+
+  const isValidEmail = (formEmail) => {
+    const re =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(formEmail).toLowerCase());
+  };
+
+  if (formEmail === "") {
+    setError(formEmailE, "Email is required");
+    return false;
+  } else if (!isValidEmail(formEmail)) {
+    setError(formEmailE, "Provide a valid email address");
+    return false;
+  } else {
+    setSuccess(formEmailE);
+    return true;
+  }
+}
+
+//Validating the tpNumber
+function validateTpNumber() {
+    let formPhone = formPhoneE.value.trim();
   
-    const isValidEmail = (formEmail) => {
-      const re =
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      return re.test(String(formEmail).toLowerCase());
+    let isValidTpNumber = (formPhone) => {
+      if (formPhone.charAt(0) != 0) {
+        return false;
+      }
+  
+      let tpS = formPhone.toString();
+      let tp = tpS.substring(1, 10);
+  
+      if (tp.length != 9) {
+        return false;
+      }
+  
+      let serviceCode = [
+        "70",
+        "71",
+        "72",
+        "74",
+        "75",
+        "76",
+        "77",
+        "78",
+        "11",
+        "36",
+        "31",
+        "33",
+        "38",
+        "34",
+        "81",
+        "54",
+        "51",
+        "52",
+        "66",
+        "91",
+        "41",
+        "47",
+        "21",
+        "23",
+        "24",
+        "63",
+        "65",
+        "67",
+        "26",
+        "25",
+        "27",
+        "32",
+        "37",
+        "55",
+        "57",
+        "45",
+        "35",
+      ];
+      for (let i = 0; i < serviceCode.length; i++) {
+        if (tpS.substring(1, 3) == serviceCode[i]) {
+          return true;
+        }
+      }
+      return false;
     };
   
-    if (formEmail === "") {
-      setError(formEmailE, "Email is required");
+    if (formPhone === "") {
+      setError(formPhoneE, "Telephone number is required");
       return false;
-    } else if (!isValidEmail(formEmail)) {
-      setError(formEmailE, "Provide a valid email address");
+    } else if (!isValidTpNumber(formPhoneE)) {
+      setError(formPhoneE, "Invalid telephone number");
       return false;
     } else {
-      setSuccess(formEmailE);
+      setSuccess(formPhoneE);
       return true;
     }
   }
 
-  //validating all the inputs
+//validating all the inputs
 const isValidAllInputs = () => {
     const isValidName = validateName();
     const isValidEmail = validateEmail();
-    // const isValidDob = validateDob();
-    // const isValidAddress = validateAddress();
-    // const isValidTpNumber = validateTpNumber();
-    // const isValidNic = validateNic();
-    // const isValidSex = validateSex();
-    // const isValidSchool = validateSchool(schooE);
-    // const isValidDepartment = validateDepartment(departmentE);
-    // const isValidCourse = validateCourse(courseE);
-  
-    return (
-      isValidName &&
-       isValidEmail
+  // const isValidDob = validateDob();
+  // const isValidAddress = validateAddress();
+  const isValidTpNumber = validateTpNumber();
+  // const isValidNic = validateNic();
+  // const isValidSex = validateSex();
+  // const isValidSchool = validateSchool(schooE);
+  // const isValidDepartment = validateDepartment(departmentE);
+  // const isValidCourse = validateCourse(courseE);
+
+  return (
+    isValidName && isValidEmail &&
+    isValidTpNumber 
     //   isValidDob &&
     //   isValidAddress &&
-    //   isValidTpNumber &&
+
     //   isValidNic &&
     //   isValidSex &&
     //   isValidSchool &&
     //   isValidDepartment &&
     //   isValidCourse
-    );
-  };
+  );
+};
 
-  function StudentPortal1(formFullName,formEmail,formPhone,formBirthday,formNic,formGender,formAddress,formCity,formZipcode,formRegistrationNumber,formFaculty,formSpecialization,formYear,formSemester){
-    
-    this.formFullName=formFullName;
-    this.formEmail=formEmail;
-    this.formPhone=formPhone;
-    this.formBirthday=formBirthday;
-    this.formNic=formNic;
-    this.formGender=formGender;
-    this.formAddress=formAddress;
-    this.formCity=formCity;
-    this.formZipcode=formZipcode;
-    this.formRegistrationNumber=formRegistrationNumber;
-    this.formFaculty=formFaculty;
-    this.formSpecialization=formSpecialization;
-    this.formYear=formYear;
-    this.formSemester=formSemester;
+function StudentPortal1(
+  formFullName,
+  formEmail,
+  formPhone,
+  formBirthday,
+  formNic,
+  formGender,
+  formAddress,
+  formCity,
+  formZipcode,
+  formRegistrationNumber,
+  formFaculty,
+  formSpecialization,
+  formYear,
+  formSemester
+) {
+  this.formFullName = formFullName;
+  this.formEmail = formEmail;
+  this.formPhone = formPhone;
+  this.formBirthday = formBirthday;
+  this.formNic = formNic;
+  this.formGender = formGender;
+  this.formAddress = formAddress;
+  this.formCity = formCity;
+  this.formZipcode = formZipcode;
+  this.formRegistrationNumber = formRegistrationNumber;
+  this.formFaculty = formFaculty;
+  this.formSpecialization = formSpecialization;
+  this.formYear = formYear;
+  this.formSemester = formSemester;
 }
 
-let submitBtn = document.querySelector('.submit');
+let submitBtn = document.querySelector(".submit");
 
-submitBtn.addEventListener('click', (event) =>{
-    event.preventDefault;
-    
-    if(isValidAllInputs()){
-        var id = localStorage.getItem("id");
+submitBtn.addEventListener("click", (event) => {
+  event.preventDefault;
 
-        var formFullName = document.getElementById("form-fullname").value;
-        var formEmail = document.getElementById("form-email").value;
-        var formPhone = document.getElementById("form-phone").value;
-        var formBirthday = document.getElementById("form-birthday").value;
-        var formNic = document.getElementById("form-nic").value;
-    
-        var formGender = document.querySelector('input[name="gender"]:checked').value;
-    
-        var formAddress = document.getElementById("form-address").value;
-        var formCity = document.getElementById("form-city").value;
-        var formZipcode = document.getElementById("form-zipcode").value;
-        var formRegistrationNumber = document.getElementById("form-registrationnumber").value;
-        var formFaculty = document.getElementById("form-faculty").value;
-        var formSpecialization = document.getElementById("form-specialization").value;
-        var formYear = document.getElementById("form-year").value;
-        var formSemester = document.getElementById("form-semester").value;
+  if (isValidAllInputs()) {
+    var id = localStorage.getItem("id");
 
-        let StudentPortalOb = new StudentPortal1(formFullName,formEmail,formPhone,formBirthday,formNic,formGender,formAddress,formCity,formZipcode,formRegistrationNumber,formFaculty,formSpecialization,formYear,formSemester);
-        
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-    
-        var raw = JSON.stringify(StudentPortalOb);
-    
-        var requestOptions = {
-          method: "PUT",
-          headers: myHeaders,
-          body: raw,
-          redirect: "follow",
-        };
+    var formFullName = document.getElementById("form-fullname").value;
+    var formEmail = document.getElementById("form-email").value;
+    var formPhone = document.getElementById("form-phone").value;
+    var formBirthday = document.getElementById("form-birthday").value;
+    var formNic = document.getElementById("form-nic").value;
 
-        fetch(`http://localhost:8080/StudentPortal/${id}`, requestOptions)
-        .then((response) => response.text())
-        .then((result) => console.log(result))
-        .catch((error) => console.log("error", error));
-  
-      location.reload();
-  
-      document.getElementById("successModal").style.display = "flex";
-      document.getElementById("container").style.display = "none";
-    } else {
-      alert("Check the inputs!");
-    }
-    
+    var formGender = document.querySelector(
+      'input[name="gender"]:checked'
+    ).value;
+
+    var formAddress = document.getElementById("form-address").value;
+    var formCity = document.getElementById("form-city").value;
+    var formZipcode = document.getElementById("form-zipcode").value;
+    var formRegistrationNumber = document.getElementById(
+      "form-registrationnumber"
+    ).value;
+    var formFaculty = document.getElementById("form-faculty").value;
+    var formSpecialization = document.getElementById(
+      "form-specialization"
+    ).value;
+    var formYear = document.getElementById("form-year").value;
+    var formSemester = document.getElementById("form-semester").value;
+
+    let StudentPortalOb = new StudentPortal1(
+      formFullName,
+      formEmail,
+      formPhone,
+      formBirthday,
+      formNic,
+      formGender,
+      formAddress,
+      formCity,
+      formZipcode,
+      formRegistrationNumber,
+      formFaculty,
+      formSpecialization,
+      formYear,
+      formSemester
+    );
+
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify(StudentPortalOb);
+
+    var requestOptions = {
+      method: "PUT",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    fetch(`http://localhost:8080/StudentPortal/${id}`, requestOptions)
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.log("error", error));
+
+    location.reload();
+
+    document.getElementById("successModal").style.display = "flex";
+    document.getElementById("container").style.display = "none";
+  } else {
+    alert("Check the inputs!");
+  }
 });
