@@ -117,89 +117,6 @@ var userName = localStorage.getItem("userName");
 // Set the username in the "user-username" element
 document.getElementById("user-username").textContent = userName;
 
-// Check if a username is stored in local storage and update the UI
-// if (storedUsername) {
-//     usernameElement.textContent = storedUsername;
-// } else {
-//     // Handle the case where there's no username in local storage
-//     usernameElement.textContent = "Guest"; // You can set a default value
-// }
-
-// // Rest of your code
-// function StudentPortal1(formFullName,formEmail,formPhone,formBirthday,formNic,formGender,formAddress,formCity,formZipcode,formRegistrationNumber,formFaculty,formSpecialization,formYear,formSemester){
-
-//     this.formFullName=formFullName;
-//     this.formEmail=formEmail;
-//     this.formPhone=formPhone;
-//     this.formBirthday=formBirthday;
-//     this.formNic=formNic;
-//     this.formGender=formGender;
-//     this.formAddress=formAddress;
-//     this.formCity=formCity;
-//     this.formZipcode=formZipcode;
-//     this.formRegistrationNumber=formRegistrationNumber;
-//     this.formFaculty=formFaculty;
-//     this.formSpecialization=formSpecialization;
-//     this.formYear=formYear;
-//     this.formSemester=formSemester;
-// }
-// function retrieveStudentData1() {
-//     event.preventDefault();
-//     // Retrieve the username and password from local storage
-//     var userName = localStorage.getItem("userName");
-//     var password = localStorage.getItem("password");
-//     var id = localStorage.getItem("id")
-
-//     console.log("user name"+userName);
-
-//     var formFullName = document.getElementById("form-fullname").value;
-//     var formEmail = document.getElementById("form-email").value;
-//     var formPhone = document.getElementById("form-phone").value;
-//     var formBirthday = document.getElementById("form-birthday").value;
-//     var formNic = document.getElementById("form-nic").value;
-
-//     var formGender = document.querySelector('input[name="gender"]:checked').value;
-
-//     var formAddress = document.getElementById("form-address").value;
-//     var formCity = document.getElementById("form-city").value;
-//     var formZipcode = document.getElementById("form-zipcode").value;
-//     var formRegistrationNumber = document.getElementById("form-registrationnumber").value;
-//     var formFaculty = document.getElementById("form-faculty").value;
-//     var formSpecialization = document.getElementById("form-specialization").value;
-//     var formYear = document.getElementById("form-year").value;
-//     var formSemester = document.getElementById("form-semester").value;
-//     var url=`http://localhost:8080/StudentPortal/${id}`;
-
-//     var studentPortal1 = new StudentPortal1(formFullName,formEmail,formPhone,formBirthday,formNic,formGender,formAddress,formCity,formZipcode,formRegistrationNumber,formFaculty,formSpecialization,formYear,formSemester)
-//     var studentPortal1Json = JSON.stringify(studentPortal1)
-
-//     var myHeaders = new Headers();
-//     myHeaders.append("Content-Type", "application/json");
-
-//     var requestOptions = {
-//         method: 'PUT',
-//         headers: myHeaders,
-//         body: studentPortal1Json,
-//         redirect: 'follow'
-//       };
-
-//     fetch(url, requestOptions)
-//         .then(response => response.text())
-//         .then(result => console.log(result))
-//         .catch(error => console.log('error', error));
-
-//     const everythingIsFine = true;
-//     if (everythingIsFine===true) {
-//         //alert("Registration Success! 😀");
-//         document.getElementById("successModal").style.display = "flex";
-//         document.getElementById("container").style.display = "none";
-//        // setTimeout(function() {
-//        //     window.location.href = "http://127.0.0.1:5500/index-login.html";
-//         //}, 2000);
-//     }
-// }
-
-//Validations for the form
 
 var formFullNameE = document.getElementById("form-fullname");
 var formEmailE = document.getElementById("form-email");
@@ -275,14 +192,14 @@ function validateEmail() {
 
 //Validating the tpNumber
 function validateTpNumber() {
-  let formPhone = formPhoneE.value.trim();
+  let formPhoneV = formPhoneE.value.trim();
 
-  let isValidTpNumber = (formPhone) => {
-    if (formPhone.charAt(0) != 0) {
+  let isValidTpNumber = (formPhoneV) => {
+    if (formPhoneV.charAt(0) != 0) {
       return false;
     }
 
-    let tpS = formPhone.toString();
+    let tpS = formPhoneV.toString();
     let tp = tpS.substring(1, 10);
 
     if (tp.length != 9) {
@@ -336,10 +253,10 @@ function validateTpNumber() {
     return false;
   };
 
-  if (formPhone === "") {
+  if (formPhoneV === "") {
     setError(formPhoneE, "Telephone number is required");
     return false;
-  } else if (!isValidTpNumber(formPhoneE)) {
+  } else if (!isValidTpNumber(formPhoneV)) {
     setError(formPhoneE, "Invalid telephone number");
     return false;
   } else {
@@ -558,7 +475,6 @@ submitBtn.addEventListener("click", (event) => {
   event.preventDefault;
 
   if (isValidAllInputs()) {
-    var id = localStorage.getItem("id");
 
     var formFullName = document.getElementById("form-fullname").value;
     var formEmail = document.getElementById("form-email").value;
@@ -612,12 +528,14 @@ submitBtn.addEventListener("click", (event) => {
       redirect: "follow",
     };
 
+    var id = localStorage.getItem("id");
     fetch(`http://localhost:8080/StudentPortal/${id}`, requestOptions)
       .then((response) => response.text())
       .then((result) => console.log(result))
       .catch((error) => console.log("error", error));
 
     location.reload();
+    // alert("Success!")
 
     document.getElementById("successModal").style.display = "flex";
     document.getElementById("container").style.display = "none";
@@ -625,3 +543,96 @@ submitBtn.addEventListener("click", (event) => {
     alert("Check the inputs!");
   }
 });
+
+
+
+
+
+
+
+///// Old Code //////
+
+
+// Check if a username is stored in local storage and update the UI
+// if (storedUsername) {
+//     usernameElement.textContent = storedUsername;
+// } else {
+//     // Handle the case where there's no username in local storage
+//     usernameElement.textContent = "Guest"; // You can set a default value
+// }
+
+// // Rest of your code
+// function StudentPortal1(formFullName,formEmail,formPhone,formBirthday,formNic,formGender,formAddress,formCity,formZipcode,formRegistrationNumber,formFaculty,formSpecialization,formYear,formSemester){
+
+//     this.formFullName=formFullName;
+//     this.formEmail=formEmail;
+//     this.formPhone=formPhone;
+//     this.formBirthday=formBirthday;
+//     this.formNic=formNic;
+//     this.formGender=formGender;
+//     this.formAddress=formAddress;
+//     this.formCity=formCity;
+//     this.formZipcode=formZipcode;
+//     this.formRegistrationNumber=formRegistrationNumber;
+//     this.formFaculty=formFaculty;
+//     this.formSpecialization=formSpecialization;
+//     this.formYear=formYear;
+//     this.formSemester=formSemester;
+// }
+// function retrieveStudentData1() {
+//     event.preventDefault();
+//     // Retrieve the username and password from local storage
+//     var userName = localStorage.getItem("userName");
+//     var password = localStorage.getItem("password");
+//     var id = localStorage.getItem("id")
+
+//     console.log("user name"+userName);
+
+//     var formFullName = document.getElementById("form-fullname").value;
+//     var formEmail = document.getElementById("form-email").value;
+//     var formPhone = document.getElementById("form-phone").value;
+//     var formBirthday = document.getElementById("form-birthday").value;
+//     var formNic = document.getElementById("form-nic").value;
+
+//     var formGender = document.querySelector('input[name="gender"]:checked').value;
+
+//     var formAddress = document.getElementById("form-address").value;
+//     var formCity = document.getElementById("form-city").value;
+//     var formZipcode = document.getElementById("form-zipcode").value;
+//     var formRegistrationNumber = document.getElementById("form-registrationnumber").value;
+//     var formFaculty = document.getElementById("form-faculty").value;
+//     var formSpecialization = document.getElementById("form-specialization").value;
+//     var formYear = document.getElementById("form-year").value;
+//     var formSemester = document.getElementById("form-semester").value;
+//     var url=`http://localhost:8080/StudentPortal/${id}`;
+
+//     var studentPortal1 = new StudentPortal1(formFullName,formEmail,formPhone,formBirthday,formNic,formGender,formAddress,formCity,formZipcode,formRegistrationNumber,formFaculty,formSpecialization,formYear,formSemester)
+//     var studentPortal1Json = JSON.stringify(studentPortal1)
+
+//     var myHeaders = new Headers();
+//     myHeaders.append("Content-Type", "application/json");
+
+//     var requestOptions = {
+//         method: 'PUT',
+//         headers: myHeaders,
+//         body: studentPortal1Json,
+//         redirect: 'follow'
+//       };
+
+//     fetch(url, requestOptions)
+//         .then(response => response.text())
+//         .then(result => console.log(result))
+//         .catch(error => console.log('error', error));
+
+//     const everythingIsFine = true;
+//     if (everythingIsFine===true) {
+//         //alert("Registration Success! 😀");
+//         document.getElementById("successModal").style.display = "flex";
+//         document.getElementById("container").style.display = "none";
+//        // setTimeout(function() {
+//        //     window.location.href = "http://127.0.0.1:5500/index-login.html";
+//         //}, 2000);
+//     }
+// }
+
+//Validations for the form
