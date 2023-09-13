@@ -119,15 +119,188 @@ document.getElementById("user-username").textContent = userName;
 
 
 // Check if a username is stored in local storage and update the UI
-if (storedUsername) {
-    usernameElement.textContent = storedUsername;
-} else {
-    // Handle the case where there's no username in local storage
-    usernameElement.textContent = "Guest"; // You can set a default value
-}
+// if (storedUsername) {
+//     usernameElement.textContent = storedUsername;
+// } else {
+//     // Handle the case where there's no username in local storage
+//     usernameElement.textContent = "Guest"; // You can set a default value
+// }
 
-// Rest of your code
-function StudentPortal1(formFullName,formEmail,formPhone,formBirthday,formNic,formGender,formAddress,formCity,formZipcode,formRegistrationNumber,formFaculty,formSpecialization,formYear,formSemester){
+// // Rest of your code
+// function StudentPortal1(formFullName,formEmail,formPhone,formBirthday,formNic,formGender,formAddress,formCity,formZipcode,formRegistrationNumber,formFaculty,formSpecialization,formYear,formSemester){
+    
+//     this.formFullName=formFullName;
+//     this.formEmail=formEmail;
+//     this.formPhone=formPhone;
+//     this.formBirthday=formBirthday;
+//     this.formNic=formNic;
+//     this.formGender=formGender;
+//     this.formAddress=formAddress;
+//     this.formCity=formCity;
+//     this.formZipcode=formZipcode;
+//     this.formRegistrationNumber=formRegistrationNumber;
+//     this.formFaculty=formFaculty;
+//     this.formSpecialization=formSpecialization;
+//     this.formYear=formYear;
+//     this.formSemester=formSemester;
+// }
+// function retrieveStudentData1() {
+//     event.preventDefault(); 
+//     // Retrieve the username and password from local storage
+//     var userName = localStorage.getItem("userName");
+//     var password = localStorage.getItem("password");
+//     var id = localStorage.getItem("id")
+
+//     console.log("user name"+userName);
+
+//     var formFullName = document.getElementById("form-fullname").value;
+//     var formEmail = document.getElementById("form-email").value;
+//     var formPhone = document.getElementById("form-phone").value;
+//     var formBirthday = document.getElementById("form-birthday").value;
+//     var formNic = document.getElementById("form-nic").value;
+
+//     var formGender = document.querySelector('input[name="gender"]:checked').value;
+
+//     var formAddress = document.getElementById("form-address").value;
+//     var formCity = document.getElementById("form-city").value;
+//     var formZipcode = document.getElementById("form-zipcode").value;
+//     var formRegistrationNumber = document.getElementById("form-registrationnumber").value;
+//     var formFaculty = document.getElementById("form-faculty").value;
+//     var formSpecialization = document.getElementById("form-specialization").value;
+//     var formYear = document.getElementById("form-year").value;
+//     var formSemester = document.getElementById("form-semester").value;
+//     var url=`http://localhost:8080/StudentPortal/${id}`;
+
+
+//     var studentPortal1 = new StudentPortal1(formFullName,formEmail,formPhone,formBirthday,formNic,formGender,formAddress,formCity,formZipcode,formRegistrationNumber,formFaculty,formSpecialization,formYear,formSemester)    
+//     var studentPortal1Json = JSON.stringify(studentPortal1)
+    
+//     var myHeaders = new Headers();
+//     myHeaders.append("Content-Type", "application/json");
+
+//     var requestOptions = {
+//         method: 'PUT',
+//         headers: myHeaders,
+//         body: studentPortal1Json,
+//         redirect: 'follow'
+//       };
+      
+//     fetch(url, requestOptions)
+//         .then(response => response.text())
+//         .then(result => console.log(result))
+//         .catch(error => console.log('error', error));
+
+//     const everythingIsFine = true;
+//     if (everythingIsFine===true) {
+//         //alert("Registration Success! 😀");
+//         document.getElementById("successModal").style.display = "flex";
+//         document.getElementById("container").style.display = "none";
+//        // setTimeout(function() {
+//        //     window.location.href = "http://127.0.0.1:5500/index-login.html";
+//         //}, 2000);
+//     }    
+// }
+
+//Validations for the form
+
+var formFullNameE = document.getElementById("form-fullname");
+var formEmailE = document.getElementById("form-email");
+var formPhoneE = document.getElementById("form-phone");
+var formBirthdayE = document.getElementById("form-birthday");
+var formNicE = document.getElementById("form-nic");
+
+var formGenderE = document.querySelector('input[name="gender"]:checked');
+
+var formAddressE = document.getElementById("form-address");
+var formCityE = document.getElementById("form-city");
+var formZipcodeE = document.getElementById("form-zipcode");
+var formRegistrationNumberE = document.getElementById("form-registrationnumber");
+var formFacultyE = document.getElementById("form-faculty");
+var formSpecializationE = document.getElementById("form-specialization");
+var formYearE = document.getElementById("form-year");
+var formSemesterE = document.getElementById("form-semester");
+
+const setError = (element, message) => {
+    const inputField = element.parentElement;
+    const errorDisplay = inputField.querySelector(".error");
+  
+    errorDisplay.innerText = message;
+    inputField.classList.add("error");
+    inputField.classList.remove("success");
+  };
+  
+  const setSuccess = (element) => {
+    const inputField = element.parentElement;
+    const errorDisplay = inputField.querySelector(".error");
+  
+    errorDisplay.innerText = "";
+    inputField.classList.add("success");
+    inputField.classList.remove("error");
+  };
+
+//Validation for the name
+function validateName() {
+    let formFullName = formFullNameE.value.trim();
+  
+    if (formFullName === "") {
+      setError(formFullNameE, "Fullname is required");
+      return false;
+    } else {
+      setSuccess(formFullNameE);
+      return true;
+    }
+  }
+
+  //Validating the email
+function validateEmail() {
+    let formEmail = formEmailE.value.trim();
+  
+    const isValidEmail = (formEmail) => {
+      const re =
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(String(formEmail).toLowerCase());
+    };
+  
+    if (formEmail === "") {
+      setError(formEmailE, "Email is required");
+      return false;
+    } else if (!isValidEmail(formEmail)) {
+      setError(formEmailE, "Provide a valid email address");
+      return false;
+    } else {
+      setSuccess(formEmailE);
+      return true;
+    }
+  }
+
+  //validating all the inputs
+const isValidAllInputs = () => {
+    const isValidName = validateName();
+    const isValidEmail = validateEmail();
+    // const isValidDob = validateDob();
+    // const isValidAddress = validateAddress();
+    // const isValidTpNumber = validateTpNumber();
+    // const isValidNic = validateNic();
+    // const isValidSex = validateSex();
+    // const isValidSchool = validateSchool(schooE);
+    // const isValidDepartment = validateDepartment(departmentE);
+    // const isValidCourse = validateCourse(courseE);
+  
+    return (
+      isValidName &&
+       isValidEmail
+    //   isValidDob &&
+    //   isValidAddress &&
+    //   isValidTpNumber &&
+    //   isValidNic &&
+    //   isValidSex &&
+    //   isValidSchool &&
+    //   isValidDepartment &&
+    //   isValidCourse
+    );
+  };
+
+  function StudentPortal1(formFullName,formEmail,formPhone,formBirthday,formNic,formGender,formAddress,formCity,formZipcode,formRegistrationNumber,formFaculty,formSpecialization,formYear,formSemester){
     
     this.formFullName=formFullName;
     this.formEmail=formEmail;
@@ -144,60 +317,57 @@ function StudentPortal1(formFullName,formEmail,formPhone,formBirthday,formNic,fo
     this.formYear=formYear;
     this.formSemester=formSemester;
 }
-function retrieveStudentData1() {
-    event.preventDefault(); 
-    // Retrieve the username and password from local storage
-    var userName = localStorage.getItem("userName");
-    var password = localStorage.getItem("password");
-    var id = localStorage.getItem("id")
 
-    console.log("user name"+userName);
+let submitBtn = document.querySelector('.submit');
 
-    var formFullName = document.getElementById("form-fullname").value;
-    var formEmail = document.getElementById("form-email").value;
-    var formPhone = document.getElementById("form-phone").value;
-    var formBirthday = document.getElementById("form-birthday").value;
-    var formNic = document.getElementById("form-nic").value;
-
-    var formGender = document.querySelector('input[name="gender"]:checked').value;
-
-    var formAddress = document.getElementById("form-address").value;
-    var formCity = document.getElementById("form-city").value;
-    var formZipcode = document.getElementById("form-zipcode").value;
-    var formRegistrationNumber = document.getElementById("form-registrationnumber").value;
-    var formFaculty = document.getElementById("form-faculty").value;
-    var formSpecialization = document.getElementById("form-specialization").value;
-    var formYear = document.getElementById("form-year").value;
-    var formSemester = document.getElementById("form-semester").value;
-    var url=`http://localhost:8080/StudentPortal/${id}`;
-
-
-    var studentPortal1 = new StudentPortal1(formFullName,formEmail,formPhone,formBirthday,formNic,formGender,formAddress,formCity,formZipcode,formRegistrationNumber,formFaculty,formSpecialization,formYear,formSemester)    
-    var studentPortal1Json = JSON.stringify(studentPortal1)
+submitBtn.addEventListener('click', (event) =>{
+    event.preventDefault;
     
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
+    if(isValidAllInputs()){
+        var id = localStorage.getItem("id");
 
-    var requestOptions = {
-        method: 'PUT',
-        headers: myHeaders,
-        body: studentPortal1Json,
-        redirect: 'follow'
-      };
-      
-    fetch(url, requestOptions)
-        .then(response => response.text())
-        .then(result => console.log(result))
-        .catch(error => console.log('error', error));
+        var formFullName = document.getElementById("form-fullname").value;
+        var formEmail = document.getElementById("form-email").value;
+        var formPhone = document.getElementById("form-phone").value;
+        var formBirthday = document.getElementById("form-birthday").value;
+        var formNic = document.getElementById("form-nic").value;
+    
+        var formGender = document.querySelector('input[name="gender"]:checked').value;
+    
+        var formAddress = document.getElementById("form-address").value;
+        var formCity = document.getElementById("form-city").value;
+        var formZipcode = document.getElementById("form-zipcode").value;
+        var formRegistrationNumber = document.getElementById("form-registrationnumber").value;
+        var formFaculty = document.getElementById("form-faculty").value;
+        var formSpecialization = document.getElementById("form-specialization").value;
+        var formYear = document.getElementById("form-year").value;
+        var formSemester = document.getElementById("form-semester").value;
 
-    const everythingIsFine = true;
-    if (everythingIsFine===true) {
-        //alert("Registration Success! 😀");
-        document.getElementById("successModal").style.display = "flex";
-        document.getElementById("container").style.display = "none";
-       // setTimeout(function() {
-       //     window.location.href = "http://127.0.0.1:5500/index-login.html";
-        //}, 2000);
-    }    
-}
+        let StudentPortalOb = new StudentPortal1(formFullName,formEmail,formPhone,formBirthday,formNic,formGender,formAddress,formCity,formZipcode,formRegistrationNumber,formFaculty,formSpecialization,formYear,formSemester);
+        
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+    
+        var raw = JSON.stringify(StudentPortalOb);
+    
+        var requestOptions = {
+          method: "PUT",
+          headers: myHeaders,
+          body: raw,
+          redirect: "follow",
+        };
 
+        fetch(`http://localhost:8080/StudentPortal/${id}`, requestOptions)
+        .then((response) => response.text())
+        .then((result) => console.log(result))
+        .catch((error) => console.log("error", error));
+  
+      location.reload();
+  
+      document.getElementById("successModal").style.display = "flex";
+      document.getElementById("container").style.display = "none";
+    } else {
+      alert("Check the inputs!");
+    }
+    
+});
