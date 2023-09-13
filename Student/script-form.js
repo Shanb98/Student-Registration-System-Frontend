@@ -407,24 +407,45 @@ function validateNic() {
   }
 }
 
+//Validating the address
+function validateAddress() {
+  var formAddress = document.getElementById("form-address").value.trim();
+  var formCity = document.getElementById("form-city").value.trim();
+  var formZipcode = document.getElementById("form-zipcode").value.trim();
+
+  if (formAddress === "" && formCity === "" && formZipcode === "") {
+    setError(formAddressE, "Address is required");
+    setError(formCityE, "City is required");
+    setError(formZipcodeE, "Postalcode is required");
+    return false;
+  } else {
+    setSuccess(formAddressE);
+    setSuccess(formCityE);
+    setSuccess(formZipcodeE);
+    return true;
+  }
+}
+
 //validating all the inputs
 const isValidAllInputs = () => {
   const isValidName = validateName();
   const isValidEmail = validateEmail();
   const isValidTpNumber = validateTpNumber();
   const isValidDob = validateDob();
-  // const isValidAddress = validateAddress();
+  const isValidAddress = validateAddress();
   const isValidNic = validateNic();
-  // const isValidSex = validateSex();
   // const isValidSchool = validateSchool(schooE);
   // const isValidDepartment = validateDepartment(departmentE);
   // const isValidCourse = validateCourse(courseE);
 
   return (
-    isValidName && isValidEmail && isValidTpNumber && isValidDob && isValidNic
-    //   isValidAddress &&
+    isValidName &&
+    isValidEmail &&
+    isValidTpNumber &&
+    isValidDob &&
+    isValidNic &&
+    isValidAddress
 
-    //   isValidSex &&
     //   isValidSchool &&
     //   isValidDepartment &&
     //   isValidCourse
