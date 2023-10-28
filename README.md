@@ -59,4 +59,8 @@ Admin login Page
 Create Account Page
 ![image](https://github.com/Shanb98/Student-Registration-System-Frontend/assets/130221905/2a7e028d-ac45-4499-afac-d4c41e1d20bd)
 
+Admin Interface
+![image](https://github.com/Shanb98/Student-Registration-System-Frontend/assets/130221905/37c1c9a8-ccf6-4cd5-bd63-7801137109e4)
+![image](https://github.com/Shanb98/Student-Registration-System-Frontend/assets/130221905/55ec6072-2269-4620-879a-fdcdfa263336)
+
 
